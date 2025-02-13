@@ -3,8 +3,8 @@ const express = require("express");
 const User = require("../models/user");
 const router = express.Router();
 
-router.post("/register", async (req, res) => {
-    const { fullName, email, password, permission } = req.body;
+router.post("/spregister", async (req, res) => {
+    const { email, reason } = req.body;
 
     const alreadyExistsUser = await User.findOne({ where: { email } }).catch(
         (err) => {

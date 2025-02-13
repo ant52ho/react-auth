@@ -25,6 +25,17 @@ function Home() {
         console.log("Response: ", response);
     };
 
+    const getAdmin = async () => {
+        const response = await axios
+            .get("http://localhost:5000/api/v1/admin", {
+                withCredentials: true,
+            })
+            .catch((err) => {
+                console.log("Error", err);
+            });
+        console.log("Response:", response);
+    };
+
     return (
         <Container>
             <HeadingXXLarge color="secondary500">
@@ -32,6 +43,9 @@ function Home() {
             </HeadingXXLarge>
             <Button kind="secondary" onClick={getPayment}>
                 Get Payment
+            </Button>
+            <Button kind="secondary" onClick={getAdmin}>
+                Admin only
             </Button>
             <Button kind="secondary" onClick={logout}>
                 Logout

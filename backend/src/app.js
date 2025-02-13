@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
 require("./auth/passport");
@@ -15,7 +16,7 @@ const app = express();
 const corsConfig = {
     // origin: "http://localhost:3000/",
     origin: true,
-    // credentials: true,
+    credentials: true,
 };
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +27,7 @@ app.use(helmet());
 app.use(cors());
 app.use(cors(corsConfig));
 // app.options("*", cors(corsConfig));
-
+app.use(cookieParser());
 app.use(express.json());
 
 app.get("/", (req, res) => {
